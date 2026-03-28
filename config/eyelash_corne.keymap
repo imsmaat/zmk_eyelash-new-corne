@@ -65,7 +65,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "QWERTY";
+            display-name = "Base";
             bindings = <
 &kp TAB  &kp B        &kp Y           &kp O               &kp U             &none                                                   &kp UP                &none        &kp L             &kp D                &kp W            &kp V                &kp SLASH
 &kp SQT  &mt LCTRL C  &mt LEFT_ALT I  &mt LEFT_COMMAND E  &mt LEFT_SHIFT A  &mt LG(LA(LC(LS(LSHFT)))) COMMA               &kp LEFT  &kp ENTER  &kp RIGHT  &kp PERIOD   &mt LEFT_SHIFT H  &mt RIGHT_COMMAND T  &mt RIGHT_ALT S  &mt RIGHT_CONTROL N  &kp DOUBLE_QUOTES
@@ -77,7 +77,7 @@
         };
 
         lower_layer {
-            display-name = "NUMBER";
+            display-name = "Numbers";
             bindings = <
 &trans  &kp N1           &kp N2          &kp N3        &kp N4        &kp N5                                         &mmv MOVE_UP                     &kp N6           &kp N7           &kp N8           &kp N9           &kp N0    &kp BSPC
 &trans  &bt BT_CLR_ALL   &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                   &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp LEFT         &kp DOWN         &kp UP           &kp RIGHT        &kp HOME  &kp PG_UP
@@ -89,7 +89,7 @@
         };
 
         raise_layer {
-            display-name = "SYMBOL";
+            display-name = "Symbols";
             bindings = <
 &trans  &kp EXCL      &kp AT        &kp HASH   &kp DLLR   &kp PRCNT                            &mmv MOVE_UP                     &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
 &trans  &bt BT_CLR    &mkp LCLK     &mkp MCLK  &mkp RCLK  &mkp MB4             &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
@@ -113,6 +113,7 @@
         };
 
         layer_4 {
+            display-name = "Navigation";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans                    &trans          &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
