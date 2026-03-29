@@ -53,9 +53,20 @@
     combos {
         compatible = "zmk,combos";
 
-        softoff {
-            bindings = <&soft_off>;
-            key-positions = <1 15 29>;
+        esc {
+            bindings = <&kp ESC>;
+            key-positions = <3 2>;
+            layers = <0>;
+        };
+
+        left-parenthesis {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <3 4>;
+        };
+
+        right-parenthesis {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <8 9>;
         };
     };
 
@@ -65,10 +76,10 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp TAB               &kp B        &kp Y           &kp O               &kp U             &kp LEFT_BRACKET                                        &kp UP                &kp RIGHT_BRACKET  &kp L             &kp D                &kp W            &kp V                &kp SLASH
-&kp SQT               &mt LCTRL C  &mt LEFT_ALT I  &mt LEFT_COMMAND E  &mt LEFT_SHIFT A  &mt LG(LA(LC(LS(LSHFT)))) COMMA               &kp LEFT  &kp ENTER  &kp RIGHT  &kp PERIOD         &mt LEFT_SHIFT H  &mt RIGHT_COMMAND T  &mt RIGHT_ALT S  &mt RIGHT_CONTROL N  &kp DOUBLE_QUOTES
-&kp LEFT_PARENTHESIS  &kp G        &kp X           &kp J               &kp K             &kp QUESTION                     &kp SPACE              &kp DOWN              &kp MINUS          &kp R             &kp M                &kp F            &kp P                &kp RIGHT_PARENTHESIS
-                                                   &kp Z               &lt 3 BACKSPACE   &lt 4 SPACE                                                                   &lt 4 ENTER        &lt 3 SPACE       &kp Q
+&kp TAB  &kp B        &kp Y           &kp O               &kp U             &kp LEFT_BRACKET                                                  &kp C_VOLUME_UP                        &kp RIGHT_BRACKET                     &kp L             &kp D                &kp W            &kp V                &kp SLASH
+&kp SQT  &mt LCTRL C  &mt LEFT_ALT I  &mt LEFT_COMMAND E  &mt LEFT_SHIFT A  &mt LG(LA(LS(LEFT_CONTROL))) COMMA               &kp LG(LS(TAB))  &kp C_PLAY_PAUSE          &kp LG(TAB)  &mt RS(RA(RG(RIGHT_CONTROL))) PERIOD  &mt LEFT_SHIFT H  &mt RIGHT_COMMAND T  &mt RIGHT_ALT S  &mt RIGHT_CONTROL N  &kp DOUBLE_QUOTES
+&tog 7   &kp G        &kp X           &kp J               &kp K             &kp QUESTION                        &kp SPACE                     &mt C_MUTE C_VOLUME_DOWN               &kp MINUS                             &kp R             &kp M                &kp F            &kp P                &sl 5
+                                      &kp Z               &lt 3 BACKSPACE   &lt 4 ENTER                                                                                              &lt 4 ENTER                           &lt 3 SPACE       &kp Q
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -87,10 +98,10 @@
         layer_2 {
             display-name = "Sym";
             bindings = <
-&none                 &none      &none     &none     &none      &kp LEFT_BRACKET                        &trans          &none           &kp CARET   &kp AMPERSAND  &kp PERCENT       &kp HASH      &none
-&none                 &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp SEMI                        &trans  &trans  &trans  &kp COLON       &kp DOLLAR  &kp LESS_THAN  &kp GREATER_THAN  &kp ASTERISK  &none
-&kp LEFT_PARENTHESIS  &none      &none     &none     &none      &kp EXCLAMATION   &kp C_MUTE            &trans          &kp UNDERSCORE  &kp PIPE    &kp AT_SIGN    &kp TILDE         &kp GRAVE     &kp RIGHT_PARENTHESIS
-                                           &trans    &trans     &trans                                                  &trans          &trans      &trans
+&none  &none      &none     &none     &none      &kp LEFT_BRACKET                        &trans          &kp RIGHT_BRACKET  &kp CARET   &kp AMPERSAND  &kp PERCENT       &kp HASH      &kp BACKSLASH
+&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp SEMI                        &trans  &trans  &trans  &kp COLON          &kp DOLLAR  &kp LESS_THAN  &kp GREATER_THAN  &kp ASTERISK  &none
+&none  &none      &none     &none     &none      &kp EXCLAMATION   &kp C_MUTE            &trans          &kp UNDERSCORE     &kp PIPE    &kp AT_SIGN    &kp TILDE         &kp GRAVE     &none
+                            &trans    &trans     &trans                                                  &trans             &trans      &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -111,13 +122,46 @@
         layer_4 {
             display-name = "left_qwerty";
             bindings = <
-&none  &kp Q  &kp W  &kp E   &kp R   &kp T                                 &mmv MOVE_UP                     &none                  &none      &none     &none     &none      &none
-&none  &kp A  &kp S  &kp D   &kp F   &kp G                 &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp LS(LG(LA(LCTRL)))  &kp RSHFT  &kp RGUI  &kp RALT  &kp RCTRL  &none
-&none  &kp Z  &kp X  &kp C   &kp V   &kp B   &kp C_MUTE                    &mmv MOVE_DOWN                   &none                  &none      &none     &none     &none      &none
-                     &trans  &trans  &trans                                                                 &trans                 &trans     &trans
+&none  &kp Q  &kp W  &kp E   &kp R   &kp T                         &trans          &none                  &none      &none     &none     &none      &none
+&none  &kp A  &kp S  &kp D   &kp F   &kp G                 &trans  &trans  &trans  &kp LS(LG(LA(LCTRL)))  &kp RSHFT  &kp RGUI  &kp RALT  &kp RCTRL  &none
+&none  &kp Z  &kp X  &kp C   &kp V   &kp B   &kp C_MUTE            &trans          &none                  &none      &none     &none     &none      &none
+                     &trans  &trans  &trans                                        &trans                 &trans     &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
+        };
+
+        layer_5 {
+            bindings = <
+&none  &none      &none     &none     &none      &none                                         &none         &none  &kp F7  &kp F8  &kp F9  &none    &none
+&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))           &none  &none  &none  &none  &kp F4  &kp F5  &kp F6  &kp F10  &none
+&none  &none      &none     &none     &none      &none                         &none           &none         &none  &kp F1  &kp F2  &kp F3  &none    &sl 6
+                            &none     &none      &none                                                       &none  &none   &none
+            >;
+
+            label = "Fn";
+        };
+
+        layer_6 {
+            bindings = <
+&none  &none      &none     &none     &none      &none                                         &none         &none  &kp F17  &kp F18  &kp F19  &none    &none
+&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))           &none  &none  &none  &none  &kp F14  &kp F15  &kp F16  &kp F20  &none
+&none  &none      &none     &none     &none      &none                         &none           &none         &none  &kp F11  &kp F12  &kp F13  &none    &none
+                            &none     &none      &none                                                       &none  &none    &none
+            >;
+
+            label = "Fn2";
+        };
+
+        layer_7 {
+            bindings = <
+&none   &none      &none     &none     &none      &none                                         &none         &none            &rgb_ug RGB_SAD  &rgb_ug RGB_SAI  &none            &rgb_ug RGB_SPI  &none
+&none   &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))           &none  &none  &none  &rgb_ug RGB_EFR  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_TOG  &none
+&trans  &none      &none     &none     &none      &none                         &none           &none         &none            &rgb_ug RGB_HUD  &rgb_ug RGB_HUI  &none            &rgb_ug RGB_SPD  &none
+                             &none     &none      &none                                                       &none            &none            &none
+            >;
+
+            label = "Sys";
         };
     };
 };
