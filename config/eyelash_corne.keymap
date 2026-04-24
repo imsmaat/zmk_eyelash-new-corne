@@ -208,7 +208,7 @@
                      &none  &none  &none                                &none           &none                     &trans
             >;
 
-            label = "media";
+            label = "Media";
         };
 
         layer_9 {
