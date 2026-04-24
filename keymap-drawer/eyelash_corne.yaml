@@ -43,7 +43,7 @@ layers:
   - F
   - P
   - {t: Fn, h: '$$mdi:gesture-tap-hold$$'}
-  - Z
+  - {t: Z, h: BT}
   - {t: '$$mdi:backspace$$', h: Num}
   - {t: '$$mdi:keyboard-return$$', h: left_qwerty}
   - {t: '$$mdi:keyboard-return$$', h: Sym}
@@ -484,7 +484,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - {type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
