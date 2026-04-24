@@ -26,8 +26,6 @@
     trigger-period-ms = <16>;
 };
 
-&soft_off { hold-time-ms = <2000>; };
-
 / {
     behaviors {
         td0: td0 {
@@ -35,6 +33,32 @@
             display-name = "Shift/Caps Lock Tap Dance";
             #binding-cells = <0>;
             bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
+        };
+
+        hml: home_row_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-key-positions = <22 23 24 25 26>; // List of keys on the right side of the keyboard
+            hold-trigger-on-release;
+        };
+
+        hmr: home_row_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-key-positions = <14 15 16 17 18>; // List of keys on the left side of the keyboard
+            hold-trigger-on-release;
         };
     };
 
@@ -59,16 +83,21 @@
             bindings = <&kp ESC>;
             key-positions = <3 2>;
             layers = <0>;
+            require-prior-idle-ms = <150>;
         };
 
         left-parenthesis {
             bindings = <&kp LEFT_PARENTHESIS>;
             key-positions = <3 4>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
         };
 
         right-parenthesis {
             bindings = <&kp RIGHT_PARENTHESIS>;
             key-positions = <8 9>;
+            layers = <0>;
+            require-prior-idle-ms = <150>;
         };
     };
 
@@ -78,10 +107,10 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp TAB  &kp B        &kp Y           &kp O               &kp U             &kp LEFT_BRACKET                                                  &kp C_VOLUME_UP                        &kp RIGHT_BRACKET                     &kp L             &kp D                &kp W            &kp V                &kp SLASH
-&kp SQT  &mt LCTRL C  &mt LEFT_ALT I  &mt LEFT_COMMAND E  &mt LEFT_SHIFT A  &mt LG(LA(LS(LEFT_CONTROL))) COMMA               &kp LG(LS(TAB))  &kp C_PLAY_PAUSE          &kp LG(TAB)  &mt RS(RA(RG(RIGHT_CONTROL))) PERIOD  &mt LEFT_SHIFT H  &mt RIGHT_COMMAND T  &mt RIGHT_ALT S  &mt RIGHT_CONTROL N  &kp DOUBLE_QUOTES
-&tog 7   &kp G        &kp X           &kp J               &kp K             &kp QUESTION                        &kp SPACE                     &mt C_MUTE C_VOLUME_DOWN               &kp MINUS                             &kp R             &kp M                &kp F            &kp P                &sl 5
-                                      &kp Z               &lt 3 BACKSPACE   &lt 4 ENTER                                                                                              &lt 2 ENTER                           &lt 1 SPACE       &kp Q
+&kp TAB  &kp B         &kp Y            &kp O                &kp U              &kp LEFT_BRACKET                                               &kp C_VOLUME_UP                        &kp RIGHT_BRACKET                      &kp L              &kp D                 &kp W             &kp V                 &kp SLASH
+&kp SQT  &hml LCTRL C  &hml LEFT_ALT I  &hml LEFT_COMMAND E  &hml LEFT_SHIFT A  &hml LG(LA(LS(LEFT_CONTROL))) COMMA           &kp LG(LS(TAB))  &kp C_PLAY_PAUSE          &kp LG(TAB)  &hmr RS(RA(RG(RIGHT_CONTROL))) PERIOD  &hmr LEFT_SHIFT H  &hmr RIGHT_COMMAND T  &hmr RIGHT_ALT S  &hmr RIGHT_CONTROL N  &kp DOUBLE_QUOTES
+&tog 7   &kp G         &kp X            &kp J                &kp K              &kp QUESTION                         &none                     &mt C_MUTE C_VOLUME_DOWN               &kp MINUS                              &kp R              &kp M                 &kp F             &kp P                 &sl 5
+                                        &kp Z                &lt 3 BACKSPACE    &lt 4 ENTER                                                                                           &lt 2 ENTER                            &lt 1 SPACE        &lt 8 Q
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -90,10 +119,10 @@
         layer_1 {
             display-name = "Nav";
             bindings = <
-&trans  &kp BSPC   &kp BSPC  &kp BSPC  &kp BSPC   &kp BSPC                                 &trans          &kp DEL   &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)  &kp LS(LG(Z))
-&trans  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LG(LA(LCTRL)))            &trans  &trans  &trans  &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &kp LEFT   &trans
-&trans  &kp DEL    &kp DEL   &kp DEL   &kp DEL    &kp DEL                &trans            &trans          &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &trans     &trans
-                             &trans    &trans     &trans                                                   &trans    &trans     &trans
+&trans  &kp BSPC   &kp BSPC  &kp BSPC  &kp BSPC   &kp BSPC                                &trans          &kp DEL   &kp LG(V)  &kp LG(C)  &kp LG(X)  &kp LG(Z)  &kp LS(LG(Z))
+&trans  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LG(LA(LCTRL)))           &trans  &trans  &trans  &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &none      &none
+&trans  &kp DEL    &kp DEL   &kp DEL   &kp DEL    &kp DEL                &none            &trans          &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &none      &none
+                             &trans    &trans     &trans                                                  &trans    &trans     &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -102,10 +131,10 @@
         layer_2 {
             display-name = "Sym";
             bindings = <
-&none  &none      &none     &none     &none      &kp LEFT_BRACKET                    &trans          &kp RIGHT_BRACKET  &kp CARET   &kp AMPERSAND  &kp PERCENT       &kp HASH      &kp BACKSLASH
-&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp SEMI                    &trans  &trans  &trans  &kp COLON          &kp DOLLAR  &kp LESS_THAN  &kp GREATER_THAN  &kp ASTERISK  &none
-&none  &none      &none     &none     &none      &kp EXCLAMATION   &trans            &trans          &kp UNDERSCORE     &kp PIPE    &kp AT_SIGN    &kp TILDE         &kp GRAVE     &none
-                            &trans    &trans     &trans                                              &trans             &trans      &trans
+&none  &none      &none     &none     &none      &kp LEFT_BRACE                    &trans          &kp RIGHT_BRACE  &kp CARET   &kp AMPERSAND  &kp PERCENT       &kp HASH      &kp BACKSLASH
+&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp SEMI                  &trans  &trans  &trans  &kp COLON        &kp DOLLAR  &kp LESS_THAN  &kp GREATER_THAN  &kp ASTERISK  &none
+&none  &none      &none     &none     &none      &kp EXCLAMATION  &none            &trans          &kp UNDERSCORE   &kp PIPE    &kp AT_SIGN    &kp TILDE         &kp GRAVE     &none
+                            &trans    &trans     &trans                                            &trans           &trans      &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -114,10 +143,10 @@
         layer_3 {
             display-name = "Num";
             bindings = <
-&none           &kp LG(Q)   &kp LG(W)  &kp LG(LEFT_BRACKET)  &kp LG(R)    &kp LG(RIGHT_BRACKET)                    &trans          &kp PLUS    &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp ASTERISK     &kp SLASH
-&kp SPACE       &kp LCTRL   &kp LALT   &kp LGUI              &kp LSHFT    &kp LS(LG(LA(LCTRL)))            &trans  &trans  &trans  &kp PERIOD  &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_NUMBER_0  &none
-&kp LS(K_UNDO)  &kp K_UNDO  &kp K_CUT  &kp K_COPY            &kp K_PASTE  &kp DELETE             &trans            &trans          &kp MINUS   &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp EQUAL        &none
-                                       &trans                &trans       &trans                                                   &trans      &trans           &trans
+&none          &kp LG(Q)  &kp LG(W)  &kp LG(LEFT_BRACKET)  &kp LG(R)  &kp LG(RIGHT_BRACKET)                   &trans          &kp KP_PLUS   &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_ASTERISK  &kp KP_DIVIDE
+&kp SPACE      &kp LCTRL  &kp LALT   &kp LGUI              &kp LSHFT  &kp LS(LG(LA(LCTRL)))           &trans  &trans  &trans  &kp KP_DOT    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_0     &none
+&kp LS(LG(Z))  &kp LG(Z)  &kp LG(X)  &kp LG(C)             &kp LG(V)  &kp DELETE             &none            &trans          &kp KP_MINUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp KP_EQUAL     &none
+                                     &trans                &trans     &trans                                                  &trans        &trans        &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -126,10 +155,10 @@
         layer_4 {
             display-name = "left_qwerty";
             bindings = <
-&none  &kp Q  &kp W  &kp E   &kp R   &kp T                         &trans          &none                  &none      &none     &none     &none      &none
-&none  &kp A  &kp S  &kp D   &kp F   &kp G                 &trans  &trans  &trans  &kp LS(LG(LA(LCTRL)))  &kp RSHFT  &kp RGUI  &kp RALT  &kp RCTRL  &none
-&none  &kp Z  &kp X  &kp C   &kp V   &kp B   &kp C_MUTE            &trans          &none                  &none      &none     &none     &none      &none
-                     &trans  &trans  &trans                                        &trans                 &trans     &trans
+&none  &kp Q  &kp W  &kp E   &kp R   &kp T                    &trans          &none                  &none      &none     &none     &none      &none
+&none  &kp A  &kp S  &kp D   &kp F   &kp G            &trans  &trans  &trans  &kp LS(LG(LA(LCTRL)))  &kp RSHFT  &kp RGUI  &kp RALT  &kp RCTRL  &none
+&none  &kp Z  &kp X  &kp C   &kp V   &kp B   &none            &trans          &none                  &none      &none     &none     &none      &none
+                     &trans  &trans  &trans                                   &trans                 &trans     &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
@@ -137,10 +166,10 @@
 
         layer_5 {
             bindings = <
-&none  &none      &none     &none     &none      &none                                          &none         &none  &kp F7  &kp F8  &kp F9  &none    &none
-&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))            &none  &none  &none  &none  &kp F4  &kp F5  &kp F6  &kp F10  &none
-&none  &none      &none     &none     &none      &none                         &trans           &none         &none  &kp F1  &kp F2  &kp F3  &none    &sl 6
-                            &none     &none      &none                                                        &none  &none   &none
+&none  &none      &none     &none     &none      &none                                         &none         &none  &kp F7  &kp F8  &kp F9  &none    &none
+&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))           &none  &none  &none  &none  &kp F4  &kp F5  &kp F6  &kp F10  &none
+&none  &none      &none     &none     &none      &none                         &none           &none         &none  &kp F1  &kp F2  &kp F3  &none    &sl 6
+                            &none     &none      &none                                                       &none  &none   &none
             >;
 
             label = "Fn";
@@ -149,10 +178,10 @@
 
         layer_6 {
             bindings = <
-&none  &none      &none     &none     &none      &none                                          &none         &none  &kp F17  &kp F18  &kp F19  &none    &none
-&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))            &none  &none  &none  &none  &kp F14  &kp F15  &kp F16  &kp F20  &none
-&none  &none      &none     &none     &none      &none                         &trans           &none         &none  &kp F11  &kp F12  &kp F13  &none    &none
-                            &none     &none      &none                                                        &none  &none    &none
+&none  &none      &none     &none     &none      &none                                         &none         &none  &kp F17  &kp F18  &kp F19  &none    &none
+&none  &kp LCTRL  &kp LALT  &kp LGUI  &kp LSHFT  &kp LS(LA(LG(LEFT_CONTROL)))           &none  &none  &none  &none  &kp F14  &kp F15  &kp F16  &kp F20  &none
+&none  &none      &none     &none     &none      &none                         &none           &none         &none  &kp F11  &kp F12  &kp F13  &none    &none
+                            &none     &none      &none                                                       &none  &none    &none
             >;
 
             label = "Fn2";
@@ -169,6 +198,28 @@
 
             label = "Sys";
             sensor-bindings = <&scroll_encoder>;
+        };
+
+        layer_8 {
+            bindings = <
+&none  &none  &none  &none  &none  &none                  &none         &none           &none                     &none            &none       &none  &none
+&none  &none  &none  &none  &none  &none           &none  &none  &none  &kp C_PREVIOUS  &mt C_MUTE C_VOLUME_DOWN  &kp C_VOLUME_UP  &kp C_NEXT  &none  &none
+&none  &none  &none  &none  &none  &none  &none           &none         &none           &none                     &none            &none       &none  &none
+                     &none  &none  &none                                &none           &none                     &trans
+            >;
+
+            label = "media";
+        };
+
+        layer_9 {
+            bindings = <
+&none           &none       &none  &none       &none       &none                         &none         &none  &none  &none  &none  &none  &none
+&bt BT_CLR_ALL  &bt BT_CLR  &none  &bt BT_PRV  &bt BT_NXT  &out OUT_TOG           &none  &none  &none  &none  &none  &none  &none  &none  &none
+&none           &none       &none  &none       &none       &none         &none           &none         &none  &none  &none  &none  &none  &none
+                                   &trans      &none       &none                                       &none  &none  &none
+            >;
+
+            label = "BT";
         };
     };
 };
