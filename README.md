@@ -1,3 +1,13 @@
+# Keymap for Corne (Eyelash Version)
+
+Based on [Engram layout by Arno Klein](https://github.com/binarybottle/engram).
+
+Edited with [Nick Coutsos's Keymap Editor](https://nickcoutsos.github.io/keymap-editor/).
+
+<img src="keymap-drawer/eyeslash_corne.svg" >
+
+# Vendor Info
+
 - [中文](README.md)
 - [English](README_EN.md)
 
